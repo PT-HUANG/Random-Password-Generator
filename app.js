@@ -4,7 +4,11 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-    res.send('express app for generator')
+    res.redirect('/password-generator')
+  })
+  
+app.get('/password-generator', (req, res) => {
+    res.send('password generator')
 })
 
 app.listen(port, () => {
