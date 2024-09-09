@@ -1,31 +1,32 @@
 <div class="container p-4 mw-100 bg-dark" style="height: 600px;">
-	<div class="form_container mx-auto mt-3 bg-white rounded" style="width: 800px; height: 535px;">
+	<div class="form_container mx-auto mt-3 bg-white rounded" style="width: 800px; height: 530px;">
 		<div class="px-4 pt-3">
 			<div class="form_header">
 				<p class="fs-5 fw-bold ">Random Password Generator <i class="fa-solid fa-key"></i></p>
 			</div>
 			<hr>
-			<form method="GET" class="fw-bold" action="">
-				<div class="form-group mt-2 mb-4 d-flex">
-					<label for="password_length" class="col-4">Password Length</label>
+			<form method="GET" class="fw-bold row g-3 needs-validation" novalidate>
+				<div class="form-group mt-2 d-flex">
+					<label for="password_length" class="col-4 form-label">Password Length</label>
 					<div class="col-8">
-						<input id="password_length" class="form-control" type="number" min="4" max="16">
+						<input id="password_length" class="form-control" type="number" min="4" max="16" required>
+						<div class="invalid-feedback">Length invalid.</div>
 						<div id="password_help" class="form-text">Length is avaliable between 4 ~ 16</div>
 					</div>
 				</div>
-				<div class="form-group my-4">
+				<div class="form-group">
 					<label for="lowercase" class="col-4">Include Lower Case Characters</label>
-					<input id="lowercase"  type="checkbox">　(e.g. abcdefg)
+					<input id="lowercase" type="checkbox">　(e.g. abcdefg)
 				</div>
-				<div class="form-group my-4">
+				<div class="form-group">
 					<label for="uppercase" class="col-4">Include Upper Case Characters</label>
 					<input id="uppercase" type="checkbox">　(e.g. ABCDEFG)
 				</div>
-				<div class="form-group my-4">
+				<div class="form-group">
 					<label for="number" class="col-4">Include Numbers</label>
 					<input id="number" type="checkbox">　(e.g. 123456)
 				</div>
-				<div class="form-group my-4">
+				<div class="form-group">
 					<label for="symbol" class="col-4">Include Symbols</label>
 					<input id="symbol" type="checkbox">　(e.g. @#$%)
 				</div>
@@ -33,7 +34,8 @@
 					<label for="exclude_character" class="col-4">Exclude Characters</label>
 					<div class="col-8">
 						<input id="exclude_character" class="form-control" type="text">
-						<div id="exclude_character_help" class="form-text">These characters will not appear in the password</div>
+						<div id="exclude_character_help" class="form-text">These characters will not appear in the
+							password</div>
 					</div>
 				</div>
 				<button type="submit" class="btn btn-success mt-2 col-3">Generate Password</button>
@@ -46,3 +48,19 @@
 		</div>
 	</div>
 </div>
+<script>
+	// Fetch all the forms we want to apply custom Bootstrap validation styles to
+	const forms = document.querySelectorAll('.needs-validation')
+
+	// Loop over them and prevent submission
+	Array.from(forms).forEach(form => {
+		form.addEventListener('submit', event => {
+			if (!form.checkValidity()) {
+				event.preventDefault()
+				event.stopPropagation()
+			}
+
+			form.classList.add('was-validated')
+		}, false)
+	})
+</script>
