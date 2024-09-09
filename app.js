@@ -7,8 +7,10 @@ const port = 3000
 //View => use Handlebar as view engine
 app.engine('.hbs', engine({extname: '.hbs'})) //更改附檔名.handlebars => .hbs
 app.set('view engine', '.hbs') //指定 view engine 為.hbs檔案
-app.set('views', './views')
+app.set('views', './views') //指定views 資料夾底下的檔案做為顯示畫面使用
 
+//Model => 存取public資料夾底下的靜態檔案
+app.use(express.static('public'))
 
 //Controller
 app.get('/', (req, res) => {
