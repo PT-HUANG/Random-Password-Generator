@@ -44,5 +44,5 @@ $ npm install
 $ npm install
 ```
 
-Visit http://localhost:3000 to start using Random Password Generator.
+5. Visit http://localhost:3000 to start using Random Password Generator.
 
