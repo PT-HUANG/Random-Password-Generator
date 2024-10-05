@@ -2,6 +2,8 @@
 
 This is a free tool allows users to randomly generate passwords between 4 and 16 characters based on their selected options.
 
+![image](https://github.com/PT-HUANG/Random-Password-Generator/blob/main/demo.png)
+
 ## Feature
 
 - Reandomly generate password
