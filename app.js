@@ -1,26 +1,32 @@
-//EXPRESS
-const express = require('express')
-const { engine } = require('express-handlebars')
-const app = express()
-const port = 3000
+//Express Basic settings & Variables 
+import express from 'express';
+import { engine } from 'express-handlebars';
+import { generatePassword } from './public/javascripts/generate_password.js';
+const app = express();
+const port = 3000;
 
-//View => use Handlebar as view engine
-app.engine('.hbs', engine({extname: '.hbs'})) //更改附檔名.handlebars => .hbs
-app.set('view engine', '.hbs') //指定 view engine 為.hbs檔案
-app.set('views', './views') //指定views 資料夾底下的檔案做為顯示畫面使用
+//View => Use Handlebars as view engine
+app.engine('.hbs', engine({extname: '.hbs'}));
+app.set('view engine', '.hbs');                
+app.set('views', './views');  
 
-//Model => 存取public資料夾底下的靜態檔案
-app.use(express.static('public'))
+//Model => Load static files
+app.use(express.static('public'));
 
-//Controller
+//Middleware => Encode url
+app.use(express.urlencoded({ extended: true }));
+
+//Controller => Routing
 app.get('/', (req, res) => {
-    res.redirect('/password-generator')
+    res.render('index');
   })
   
-app.get('/password-generator', (req, res) => {
-    res.render('index')
+app.post('/', (req, res) => {
+    const option = req.body;
+    const password = generatePassword(option);
+    res.render('index', {password, option});
 })
 
 app.listen(port, () => {
-    console.log(`express server is running on https://localhost:${port}`)
+    console.log(`express server is running on https://localhost:${port}`);
 })
